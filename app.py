@@ -1,23 +1,16 @@
-import streamlit as st 
-import numpy as np 
-import pickle 
+import streamlit as st
+import joblib
+import numpy as np
+from sklearn.preprocessing import StandardScaler
 
-# Function to load the model
-def load_model():
-    try:
-        with open("model/model.pkl", "rb") as file:  # Open the file in 'rb' mode
-            model = pickle.load(file)
-        return model
-    except Exception as e:
-        st.error(f"Error loading model: {e}")
-        st.stop()
+# Load the trained model and scaler
+model = joblib.load('model/model.pkl')
+scaler = joblib.load('model/scaler.pkl')  # Load the scaler used during training
+
 
 # Streamlit app interface
 def main():
     st.title("DED Severity Prediction App")
-
-    # Load the pre-trained model
-    model = load_model()
 
     # Input fields from the user
     gender = st.selectbox("Gender", ["Male", "Female"])
@@ -63,14 +56,22 @@ def main():
                                schirmer_left, schirmer_right, 
                                tbut_left, tbut_right, 
                                ocular_left, ocular_right]).reshape(1, -1)
+    
+
 
     # Make prediction on button click
     if st.button("Predict Ded Severity"):
         try:
-            prediction = model.predict(input_features)
+            # Apply the same scaling that was used during training
+            input_data_scaled = scaler.transform(input_features)  # Use transform to apply scaling
+
+            # Predict with the model
+            prediction = model.predict(input_data_scaled)
+
             severity_mapping = {0: "Normal", 1: "Mild", 2: "Moderate", 3: "Severe"}
             predicted_severity = severity_mapping[prediction[0]]
             st.write(f"Predicted Ded Severity: {predicted_severity}")
+        
         except Exception as e:
             st.error(f"Error during prediction: {e}")
 

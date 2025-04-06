@@ -2,7 +2,10 @@ numpy
 pandas
 matplotlib
 seaborn
-streamlit
-pickle
+
 scikit-learn
 xgboost
+
+streamlit
+joblib
+ipykernel
