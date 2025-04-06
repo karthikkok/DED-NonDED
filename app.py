@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
+
 # Load the trained model and scaler
 model = joblib.load('model/model.pkl')
 scaler = joblib.load('model/scaler.pkl')  # Load the scaler used during training
