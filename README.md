@@ -16,6 +16,11 @@ The target variable for this project is the DED severity level, which can be cat
 The goal is to develop a robust predictive model capable of classifying individuals into appropriate DED severity categories. The model should be interpretable, reliable, and applicable in a clinical setting, enabling healthcare professionals to make data-driven decisions for patient management and care.
 
 ---
+
+[DED Severity Prediction App Link](https://karthikkok-ded-nonded-me6iwghjst2dnaep3k24d8.streamlit.app/)
+
+---
+
 ## Insights :
 
 
