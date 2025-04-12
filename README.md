@@ -17,9 +17,9 @@ The goal is to develop a robust predictive model capable of classifying individu
 
 ---
 
-[DED Severity Prediction App Link](https://karthikkok-ded-nonded-me6iwghjst2dnaep3k24d8.streamlit.app/)
+[DED Severity Prediction App Link](https://karthikkok-ded-nonded.streamlit.app/)
 
-https://karthikkok-ded-nonded-me6iwghjst2dnaep3k24d8.streamlit.app/
+https://karthikkok-ded-nonded.streamlit.app/
 
 ---
 
