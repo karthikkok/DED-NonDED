@@ -1,13 +1,20 @@
+
 import streamlit as st
 import joblib
 import numpy as np
 from sklearn.preprocessing import StandardScaler
+import pandas as pd
+import warnings 
 
+warnings.filterwarnings('ignore')
 
 # Load the trained model and scaler
-model = joblib.load('model/model.pkl')
-scaler = joblib.load('model/scaler.pkl')  # Load the scaler used during training
+#model = joblib.load('notebooks/model.pkl')
+#scaler = joblib.load('notebooks/scaler.pkl')  # Load the scaler used during training
 
+# Load the trained model and scaler
+model = joblib.load('model/gradient-model.pkl')
+scaler = joblib.load('model/gradient-scaler.pkl')  # Load the scaler used during training
 
 # Streamlit app interface
 def main():
@@ -16,7 +23,7 @@ def main():
     # Input fields from the user
     gender = st.selectbox("Gender", ["Male", "Female"])
     age = st.slider("Age", 12, 30)
-    device_types = st.multiselect("Device Types Used", 
+    device_types = st.selectbox("Device Types Used", 
                                ['Gaming Console, Smartphone, Tablet', 
                                 'Smartphone, Computer', 
                                 'Tablet, Smartphone'])
@@ -45,21 +52,17 @@ def main():
          'Tablet, Smartphone' : 2
     }
     
-    device_input = [device_map[d] for d in device_types]
+    device_input = device_map[device_types]
 
-    # Flatten the device input (binary encoding)
-    device_input_flat = [1 if i in device_input else 0 for i in range(3)]
 
-    # Create feature vector for prediction
-    input_features = np.array([gender_input, age ] +
-                               device_input_flat + [
-                               usage_hours, years_usage, osdi_score, 
-                               schirmer_left, schirmer_right, 
-                               tbut_left, tbut_right, 
-                               ocular_left, ocular_right]).reshape(1, -1)
+    input_features = np.array([gender_input, age,
+                          device_input ,  # 3 elements from device input
+                          usage_hours, years_usage, osdi_score, 
+                          schirmer_left, schirmer_right, 
+                          tbut_left, tbut_right, 
+                          ocular_left, ocular_right])  # 12 elements in total
+    input_features = input_features.reshape(1, -1)
     
-
-
     # Make prediction on button click
     if st.button("Predict Ded Severity"):
         try:
@@ -69,8 +72,7 @@ def main():
             # Predict with the model
             prediction = model.predict(input_data_scaled)
 
-            severity_mapping = {0: "Normal", 1: "Mild", 2: "Moderate", 3: "Severe"}
-            predicted_severity = severity_mapping[prediction[0]]
+            predicted_severity = prediction[0]
             st.write(f"Predicted Ded Severity: {predicted_severity}")
         
         except Exception as e:
