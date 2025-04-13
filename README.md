@@ -1,9 +1,14 @@
 # *Title: Predicting the Severity Level of Dry Eye Disease (DED) in Individuals.*
 
+A machine learning project to standardize and accelerate the classification of Dry Eye Disease (DED) severity using structured clinical data.
+
+**Problem Statement:**
+
+**Dry Eye Disease (DED)** is a common condition affecting millions of individuals worldwide, leading to discomfort, irritation, and potential vision problems. The severity of DED varies significantly from one person to another, making personalized diagnosis and treatment crucial for effective management.
+
+This project uses machine learning to automate and standardize DED severity classification from patient data — supporting faster, more reliable diagnosis.
 
 **Objective:**
-
-Dry Eye Disease (DED) is a common condition affecting millions of individuals worldwide, leading to discomfort, irritation, and potential vision problems. The severity of DED varies significantly from one person to another, making personalized diagnosis and treatment crucial for effective management.
 
 The objective of this project is to predict the severity level of Dry Eye Disease (DED) in individuals based on a set of medical, behavioral, and demographic features. By accurately classifying the severity of DED (e.g., mild, moderate, severe, normal), healthcare providers can optimize treatment strategies and improve patient outcomes.
 
@@ -13,9 +18,11 @@ The target variable for this project is the DED severity level, which can be cat
 
 **Goal:**
 
-The goal is to develop a robust predictive model capable of classifying individuals into appropriate DED severity categories. The model should be interpretable, reliable, and applicable in a clinical setting, enabling healthcare professionals to make data-driven decisions for patient management and care.
+Build a machine learning model that accurately classifies the severity of DED based on patient data, enabling faster, standardized, and remote-friendly assessments.
 
 ---
+
+## App link:
 
 [DED Severity Prediction App Link](https://karthikkok-ded-nonded.streamlit.app/)
 
@@ -100,19 +107,39 @@ Model name - Roc Auc Score
 
 | Model Name	| Roc_Auc_Score |
 | --- | ---- |
-| Random Forest Classifier	| 0.996327|
-| xgboost |	0.991457|
-|	Gradient Boosting	|0.971135|
-|Decision Tree	| 0.969673|
-|	K-Neighbors Classifier	|0.913048|
-|	Logistic Regression	|0.792562|
-|	Adaboost	|0.776800|
+| Adaboost | 0.783009 |
+| Random Forest Classifier	| 0.768746|
+| Gradient Boosting |	0.752682 |
+|	Gaussian Naive Bayes	|0.743628|
+| Logistic Regression	| 0.739880 |
+|	K-Neighbors Classifier	|0.721294|
+|	Decision Tree	| 0.687494 |
 
 --- 
-**confucion Matrix :**
+**Confucion Matrix :**
 
-- RandomForestClassifier
+- Gradient Boosting Classifier
 
-![image](https://github.com/user-attachments/assets/ee5612cd-76dc-429f-b1cf-3be5457f0e2a)
-
+![alt text](image.png)
 ---- 
+
+##  How to Run
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/karthikkok/DED-NonDED.git
+cd DED-NonDED
+```
+
+2. Install dependencies:
+
+``` bash
+pip install -r requirements.txt
+```
+
+3. Run the main notebook or app:
+
+```bash
+streamlit run app.py
+```
